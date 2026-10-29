@@ -1,0 +1,86 @@
+PRACTICAL 16: PL/SQL PROGRAM USING GOTO, EXIT AND CONTINUE
+Subject : Relational Database Management System (CM41201)
+College : Government Polytechnic, Pune
+
+--------------------------------------------------------------------
+AIM
+--------------------------------------------------------------------
+To demonstrate the use of GOTO, EXIT and CONTINUE statements in
+PL/SQL.
+
+--------------------------------------------------------------------
+THEORY
+--------------------------------------------------------------------
+Sequential statements normally execute in order.
+
+  GOTO     : Transfers control to a labelled statement within the
+             same PL/SQL block. The label is written as <<label_name>>
+             and the statement must follow the GOTO. A GOTO cannot
+             jump into a loop or into an IF statement from outside.
+  EXIT     : Terminates a loop immediately. It can be used with a
+             WHEN condition, e.g. EXIT WHEN i = 5.
+  CONTINUE : Skips the remaining statements of the current iteration
+             and proceeds to the next iteration of the loop. It was
+             introduced in Oracle 11g. In Oracle 10g, an IF...THEN
+             structure is used to skip the rest of the loop body.
+
+These statements alter the normal flow of program execution.
+
+--------------------------------------------------------------------
+PROGRAM
+--------------------------------------------------------------------
+SET SERVEROUTPUT ON;
+
+BEGIN
+    GOTO START_POINT;
+
+    DBMS_OUTPUT.PUT_LINE('Skipped');
+
+    <<START_POINT>>
+    DBMS_OUTPUT.PUT_LINE('GOTO executed');
+
+    FOR i IN 1..5 LOOP
+        IF i = 2 THEN
+            CONTINUE;
+        END IF;
+
+        IF i = 5 THEN
+            EXIT;
+        END IF;
+
+        DBMS_OUTPUT.PUT_LINE(i);
+    END LOOP;
+END;
+/
+
+--------------------------------------------------------------------
+EXPECTED OUTPUT
+--------------------------------------------------------------------
+GOTO executed
+1
+3
+4
+
+--------------------------------------------------------------------
+PROCEDURE
+--------------------------------------------------------------------
+1. Start the PL/SQL block.
+2. Use GOTO to transfer control to the labelled statement.
+3. Observe that the statement before the label is skipped.
+4. Execute the loop from 1 to 5.
+5. Use CONTINUE to skip displaying 2.
+6. Use EXIT to terminate the loop when the counter reaches 5.
+
+--------------------------------------------------------------------
+OBSERVATION
+--------------------------------------------------------------------
+The GOTO statement transferred control to the label, CONTINUE
+skipped one iteration, and EXIT stopped the loop. The value 2 was
+not displayed because of CONTINUE, and the value 5 was not displayed
+because EXIT terminated the loop before the output statement.
+
+--------------------------------------------------------------------
+CONCLUSION
+--------------------------------------------------------------------
+The GOTO, EXIT and CONTINUE statements were demonstrated
+successfully to control the flow of a PL/SQL program.

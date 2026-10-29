@@ -1,0 +1,96 @@
+PRACTICAL 24: PERFORM BASIC MONGODB CRUD OPERATIONS
+Subject : Relational Database Management System (CM41201)
+College : Government Polytechnic, Pune
+
+--------------------------------------------------------------------
+AIM
+--------------------------------------------------------------------
+To perform Create, Read, Update and Delete (CRUD) operations in
+MongoDB.
+
+--------------------------------------------------------------------
+THEORY
+--------------------------------------------------------------------
+CRUD represents the four basic operations used to manage data in a
+database.
+
+  Create : Inserts new documents.              insertOne(), insertMany()
+  Read   : Retrieves documents.                find(), findOne()
+  Update : Modifies existing documents.        updateOne(), updateMany()
+  Delete : Removes documents.                  deleteOne(), deleteMany()
+
+MongoDB stores documents in collections within databases.
+
+Useful commands:
+  show dbs               - lists all databases.
+  use StudentDB          - selects or creates a database.
+  show collections       - lists collections of the current database.
+  db.Student.countDocuments() - counts documents in a collection.
+
+Update operators:
+  $set      - sets the value of a field.
+  $inc      - increments a field by a given value.
+  $unset    - removes a field.
+
+--------------------------------------------------------------------
+PROCEDURE USING MONGODB COMPASS
+--------------------------------------------------------------------
+1. Connect to the MongoDB server.
+2. Create a database named StudentDB.
+3. Create a collection named Student.
+4. Insert student documents.
+5. View the inserted records.
+6. Update a student's marks.
+7. Delete a student record.
+8. Verify the final collection contents.
+
+--------------------------------------------------------------------
+MONGODB COMMANDS
+--------------------------------------------------------------------
+use StudentDB
+
+db.createCollection("Student")
+
+db.Student.insertOne({
+    RollNo: 1,
+    Name: "Rahul",
+    Course: "Computer Engineering",
+    Marks: 85
+})
+
+db.Student.insertOne({
+    RollNo: 2,
+    Name: "Priya",
+    Course: "Computer Engineering",
+    Marks: 90
+})
+
+db.Student.find()
+
+db.Student.updateOne(
+    { RollNo: 1 },
+    { $set: { Marks: 95 } }
+)
+
+db.Student.find({ RollNo: 1 })
+
+db.Student.deleteOne({ RollNo: 2 })
+
+db.Student.find()
+
+--------------------------------------------------------------------
+OBSERVATION
+--------------------------------------------------------------------
+The student documents were inserted and displayed. Rahul's marks
+were updated from 85 to 95, and Priya's record was deleted. The
+final query displayed the remaining student record.
+
+Each document also contains an automatically generated _id field
+that acts as its unique identifier.
+
+--------------------------------------------------------------------
+CONCLUSION
+--------------------------------------------------------------------
+MongoDB CRUD operations were performed successfully. The practical
+demonstrated how to insert, retrieve, update and delete documents in
+a NoSQL database.

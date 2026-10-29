@@ -1,0 +1,80 @@
+PRACTICAL 5: CREATE AND EXECUTE QUERIES USING DCL AND TCL COMMANDS
+Subject : Relational Database Management System (CM41201)
+College : Government Polytechnic, Pune
+
+--------------------------------------------------------------------
+AIM
+--------------------------------------------------------------------
+To execute Data Control Language and Transaction Control Language
+commands.
+
+--------------------------------------------------------------------
+THEORY
+--------------------------------------------------------------------
+DCL commands control access to database objects.
+
+  GRANT  : Gives privileges to a user, e.g. SELECT or INSERT on a
+           table.
+  REVOKE : Removes previously granted privileges.
+
+TCL commands manage transactions. A transaction is a sequence of
+DML statements treated as one logical unit of work.
+
+  COMMIT          : Saves all changes of the transaction permanently.
+  ROLLBACK        : Cancels all uncommitted changes of the
+                    transaction.
+  SAVEPOINT       : Marks a position within a transaction to which a
+                    rollback can be applied later.
+  ROLLBACK TO <sp>: Cancels only the changes made after the
+                    specified savepoint.
+
+--------------------------------------------------------------------
+SQL CODE
+--------------------------------------------------------------------
+CREATE TABLE TestData (
+    ID NUMBER,
+    Name VARCHAR2(30)
+);
+
+INSERT INTO TestData VALUES (1, 'Rahul');
+SAVEPOINT S1;
+
+INSERT INTO TestData VALUES (2, 'Priya');
+
+ROLLBACK TO S1;
+
+COMMIT;
+
+-- Only the record Rahul (ID 1) remains in the table.
+
+--------------------------------------------------------------------
+DCL EXAMPLES
+--------------------------------------------------------------------
+Run these as an authorised database administrator, replacing
+student_user with an existing database username:
+
+GRANT SELECT, INSERT ON TestData TO student_user;
+
+REVOKE INSERT ON TestData FROM student_user;
+
+--------------------------------------------------------------------
+PROCEDURE
+--------------------------------------------------------------------
+1. Create the TestData table.
+2. Insert the first record and create a savepoint.
+3. Insert another record.
+4. Roll back to the savepoint.
+5. Commit the remaining transaction.
+6. Grant and revoke privileges using an authorised account.
+
+--------------------------------------------------------------------
+OBSERVATION
+--------------------------------------------------------------------
+The rollback removed the changes made after the savepoint. The
+grant and revoke commands controlled access privileges.
+
+--------------------------------------------------------------------
+CONCLUSION
+--------------------------------------------------------------------
+DCL and TCL commands were studied and used to manage database
+permissions and transactions.

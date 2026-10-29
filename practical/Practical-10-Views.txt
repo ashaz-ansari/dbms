@@ -1,0 +1,72 @@
+PRACTICAL 10: CREATE, INSERT, UPDATE AND DROP A VIEW
+Subject : Relational Database Management System (CM41201)
+College : Government Polytechnic, Pune
+
+--------------------------------------------------------------------
+AIM
+--------------------------------------------------------------------
+To create and perform operations on a database view.
+
+--------------------------------------------------------------------
+THEORY
+--------------------------------------------------------------------
+A view is a virtual table based on the result of a SQL query. It
+normally stores the query definition rather than a separate copy of
+the underlying data.
+
+Advantages:
+  - Simplifies complex queries.
+  - Can restrict access to selected columns or rows.
+  - Provides data independence and security.
+
+A simple view that is based on one table and does not contain
+aggregate functions, GROUP BY, DISTINCT or expressions can be used
+for INSERT, UPDATE and DELETE operations, and the change is applied
+to the base table. Views that cannot be modified in this way are
+called read-only views.
+
+--------------------------------------------------------------------
+SQL CODE
+--------------------------------------------------------------------
+CREATE VIEW Student_View AS
+SELECT RollNo, Name, Marks
+FROM Student3;
+
+SELECT * FROM Student_View;
+
+INSERT INTO Student_View
+VALUES (5, 'Kiran', 88);
+
+UPDATE Student_View
+SET Marks = 95
+WHERE RollNo = 1;
+
+SELECT * FROM Student_View;
+
+DROP VIEW Student_View;
+
+-- NOTE: The Student3 table is created in Practical 6.
+
+--------------------------------------------------------------------
+PROCEDURE
+--------------------------------------------------------------------
+1. Create a view using the CREATE VIEW command.
+2. Display the view using SELECT.
+3. Insert a record through the view.
+4. Update a student's marks through the view.
+5. Display the modified records.
+6. Remove the view using DROP VIEW.
+
+--------------------------------------------------------------------
+OBSERVATION
+--------------------------------------------------------------------
+The view displayed selected columns from the underlying table.
+Insert and update operations affected the base table because this
+simple view is updatable. Dropping the view did not affect the data
+in the Student3 table.
+
+--------------------------------------------------------------------
+CONCLUSION
+--------------------------------------------------------------------
+A view was created and used for retrieving and modifying data. The
+view was dropped successfully.

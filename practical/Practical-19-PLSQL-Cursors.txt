@@ -1,0 +1,120 @@
+PRACTICAL 19: IMPLEMENT IMPLICIT AND EXPLICIT CURSORS
+Subject : Relational Database Management System (CM41201)
+College : Government Polytechnic, Pune
+
+--------------------------------------------------------------------
+AIM
+--------------------------------------------------------------------
+To implement implicit and explicit cursors in PL/SQL.
+
+--------------------------------------------------------------------
+THEORY
+--------------------------------------------------------------------
+A cursor is a pointer to the result of a SQL statement (a private
+work area in memory).
+
+  Implicit cursor : Created automatically by Oracle for statements
+                    such as INSERT, UPDATE, DELETE and single-row
+                    SELECT INTO operations. It is referred to using
+                    the SQL attribute, e.g. SQL%ROWCOUNT.
+  Explicit cursor : Declared by the programmer to process a query
+                    that may return multiple rows. It is processed
+                    using OPEN, FETCH and CLOSE.
+
+Implicit cursor attributes:
+  SQL%FOUND    - TRUE if the statement affected one or more rows.
+  SQL%NOTFOUND - TRUE if no rows were affected.
+  SQL%ROWCOUNT - Number of rows affected.
+
+Explicit cursor attributes (cursor_name%attribute):
+  %ISOPEN, %FOUND, %NOTFOUND, %ROWCOUNT.
+
+Steps for an explicit cursor:
+  1. DECLARE the cursor with its query.
+  2. OPEN the cursor.
+  3. FETCH rows one at a time into variables in a loop.
+  4. CLOSE the cursor.
+
+--------------------------------------------------------------------
+PREREQUISITE TABLE
+--------------------------------------------------------------------
+Use the existing Cust2 table with columns Customer_ID,
+Customer_Name and Balance. If the table does not exist, create it
+as shown below:
+
+CREATE TABLE Cust2 (
+    Customer_ID NUMBER PRIMARY KEY,
+    Customer_Name VARCHAR2(30),
+    Balance NUMBER(10,2)
+);
+
+INSERT INTO Cust2 VALUES (101, 'Rahul', 25000);
+INSERT INTO Cust2 VALUES (102, 'Priya', 15000);
+INSERT INTO Cust2 VALUES (103, 'Amit',  18000);
+
+COMMIT;
+
+--------------------------------------------------------------------
+PROGRAM
+--------------------------------------------------------------------
+SET SERVEROUTPUT ON;
+
+DECLARE
+    v_name Cust2.Customer_Name%TYPE;
+
+    CURSOR c_customer IS
+        SELECT Customer_Name FROM Cust2;
+BEGIN
+    UPDATE Cust2
+    SET Balance = Balance + 1000
+    WHERE Customer_ID = 101;
+
+    DBMS_OUTPUT.PUT_LINE(
+        'Rows Updated: ' || SQL%ROWCOUNT
+    );
+
+    OPEN c_customer;
+
+    LOOP
+        FETCH c_customer INTO v_name;
+        EXIT WHEN c_customer%NOTFOUND;
+
+        DBMS_OUTPUT.PUT_LINE('Customer: ' || v_name);
+    END LOOP;
+
+    CLOSE c_customer;
+END;
+/
+
+--------------------------------------------------------------------
+EXPECTED OUTPUT
+--------------------------------------------------------------------
+Rows Updated: 1
+Customer: Rahul
+Customer: Priya
+Customer: Amit
+
+--------------------------------------------------------------------
+PROCEDURE
+--------------------------------------------------------------------
+1. Ensure that the Cust2 table contains sample records.
+2. Declare an explicit cursor to retrieve customer names.
+3. Update the balance of customer 101.
+4. Use the implicit cursor attribute SQL%ROWCOUNT to display the
+   number of updated rows.
+5. Open the explicit cursor and fetch each customer name.
+6. Close the cursor after processing all records.
+
+--------------------------------------------------------------------
+OBSERVATION
+--------------------------------------------------------------------
+The implicit cursor reported the number of updated rows. The
+explicit cursor retrieved and displayed the customer names one by
+one. The %TYPE attribute was used so that the variable data type
+matches the table column automatically.
+
+--------------------------------------------------------------------
+CONCLUSION
+--------------------------------------------------------------------
+Implicit and explicit cursors were implemented successfully to
+process SQL statements and query results.

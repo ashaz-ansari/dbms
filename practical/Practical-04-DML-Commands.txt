@@ -1,0 +1,76 @@
+PRACTICAL 4: CREATE AND EXECUTE QUERIES USING DML COMMANDS
+Subject : Relational Database Management System (CM41201)
+College : Government Polytechnic, Pune
+
+--------------------------------------------------------------------
+AIM
+--------------------------------------------------------------------
+To perform insertion, updating, deletion and retrieval of records
+using DML commands.
+
+--------------------------------------------------------------------
+THEORY
+--------------------------------------------------------------------
+Data Manipulation Language (DML) commands are used to work with the
+data stored in database tables.
+
+  INSERT : Adds new records to a table.
+  UPDATE : Modifies existing records.
+  DELETE : Removes records from a table.
+  SELECT : Retrieves records. It is commonly grouped with DML in
+           practical syllabuses, although it is technically
+           classified as DQL (Data Query Language) in some
+           references.
+
+DML commands are not auto-committed. The changes can be saved
+permanently using COMMIT or cancelled using ROLLBACK.
+
+--------------------------------------------------------------------
+SQL CODE
+--------------------------------------------------------------------
+CREATE TABLE Student2 (
+    RollNo NUMBER PRIMARY KEY,
+    Name VARCHAR2(30),
+    Marks NUMBER
+);
+
+INSERT INTO Student2 VALUES (1, 'Rahul', 85);
+INSERT INTO Student2 VALUES (2, 'Priya', 90);
+
+SELECT * FROM Student2;
+
+UPDATE Student2
+SET Marks = 95
+WHERE RollNo = 1;
+
+SELECT * FROM Student2;
+
+DELETE FROM Student2
+WHERE RollNo = 2;
+
+SELECT * FROM Student2;
+
+COMMIT;
+
+--------------------------------------------------------------------
+PROCEDURE
+--------------------------------------------------------------------
+1. Create the Student2 table.
+2. Insert two student records.
+3. Retrieve all records using SELECT.
+4. Update Rahul's marks.
+5. Delete Priya's record.
+6. Execute COMMIT to save the changes.
+
+--------------------------------------------------------------------
+OBSERVATION
+--------------------------------------------------------------------
+Records were inserted, displayed, updated and deleted using DML
+operations. Rahul's marks changed from 85 to 95 and Priya's record
+was removed from the table.
+
+--------------------------------------------------------------------
+CONCLUSION
+--------------------------------------------------------------------
+DML commands were executed successfully to manipulate data in a
+relational database.

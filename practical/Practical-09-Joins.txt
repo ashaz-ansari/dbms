@@ -1,0 +1,99 @@
+PRACTICAL 9: WRITE QUERIES USING DIFFERENT TYPES OF JOINS
+Subject : Relational Database Management System (CM41201)
+College : Government Polytechnic, Pune
+
+--------------------------------------------------------------------
+AIM
+--------------------------------------------------------------------
+To retrieve related data from multiple tables using SQL joins.
+
+--------------------------------------------------------------------
+THEORY
+--------------------------------------------------------------------
+A join combines rows from two or more tables using a related column.
+
+  INNER JOIN      : Returns only the rows that match in both tables.
+  LEFT OUTER JOIN : Returns all rows from the left table and the
+                    matching rows from the right table. Unmatched
+                    right-side columns appear as NULL.
+  RIGHT OUTER JOIN: Returns all rows from the right table and the
+                    matching rows from the left table.
+  FULL OUTER JOIN : Returns matching rows plus the non-matching rows
+                    from both tables.
+
+In Oracle, the older (+) outer join operator syntax is also
+supported, e.g. WHERE E.DeptID = D.DeptID(+).
+
+Joins help retrieve related information stored in separate tables
+without duplicating the data.
+
+--------------------------------------------------------------------
+SQL CODE
+--------------------------------------------------------------------
+CREATE TABLE Department (
+    DeptID NUMBER PRIMARY KEY,
+    DeptName VARCHAR2(30)
+);
+
+CREATE TABLE Employee2 (
+    EmpID NUMBER PRIMARY KEY,
+    EmpName VARCHAR2(30),
+    DeptID NUMBER
+);
+
+INSERT INTO Department VALUES (10, 'Computer');
+INSERT INTO Department VALUES (20, 'IT');
+
+INSERT INTO Employee2 VALUES (1, 'Rahul', 10);
+INSERT INTO Employee2 VALUES (2, 'Priya', 20);
+INSERT INTO Employee2 VALUES (3, 'Amit', NULL);
+
+-- Inner join
+SELECT E.EmpName, D.DeptName
+FROM Employee2 E
+INNER JOIN Department D
+ON E.DeptID = D.DeptID;
+
+-- Left outer join
+SELECT E.EmpName, D.DeptName
+FROM Employee2 E
+LEFT OUTER JOIN Department D
+ON E.DeptID = D.DeptID;
+
+-- Right outer join
+SELECT E.EmpName, D.DeptName
+FROM Employee2 E
+RIGHT OUTER JOIN Department D
+ON E.DeptID = D.DeptID;
+
+-- Full outer join
+SELECT E.EmpName, D.DeptName
+FROM Employee2 E
+FULL OUTER JOIN Department D
+ON E.DeptID = D.DeptID;
+
+--------------------------------------------------------------------
+PROCEDURE
+--------------------------------------------------------------------
+1. Create Department and Employee2 tables.
+2. Insert department and employee records.
+3. Execute an inner join to display matching records.
+4. Execute a left join to display all employees.
+5. Execute a right join to display all departments.
+6. Execute a full outer join to display all matching and
+   non-matching rows.
+
+--------------------------------------------------------------------
+OBSERVATION
+--------------------------------------------------------------------
+The join queries displayed related employee and department details
+according to the selected join type. Amit, whose DeptID is NULL,
+appeared only in the left and full outer joins with a NULL
+department name. The full outer join returned every row from both
+tables.
+
+--------------------------------------------------------------------
+CONCLUSION
+--------------------------------------------------------------------
+Different types of SQL joins were executed successfully to retrieve
+related records from multiple tables.

@@ -1,0 +1,84 @@
+PRACTICAL 17: PL/SQL PROGRAM USING PREDEFINED EXCEPTIONS
+Subject : Relational Database Management System (CM41201)
+College : Government Polytechnic, Pune
+
+--------------------------------------------------------------------
+AIM
+--------------------------------------------------------------------
+To handle predefined exceptions in PL/SQL.
+
+--------------------------------------------------------------------
+THEORY
+--------------------------------------------------------------------
+An exception is an error or unusual condition that interrupts the
+normal execution of a program. Oracle provides predefined exceptions
+for common errors.
+
+  ZERO_DIVIDE   : Raised when a number is divided by zero.
+  NO_DATA_FOUND : Raised when a SELECT INTO statement returns no
+                  rows.
+  TOO_MANY_ROWS : Raised when SELECT INTO returns more than one row.
+  INVALID_NUMBER: Raised when a character string cannot be converted
+                  to a number.
+  VALUE_ERROR   : Raised on arithmetic, conversion or truncation
+                  errors.
+
+Exception handlers allow a program to display suitable messages
+instead of terminating unexpectedly.
+
+The general structure of a PL/SQL block is:
+  DECLARE   - optional declarations
+  BEGIN     - executable statements
+  EXCEPTION - optional exception handlers
+  END;
+
+In the exception section, WHEN OTHERS can be used as the last
+handler to catch any exception that is not handled above it.
+
+--------------------------------------------------------------------
+PROGRAM
+--------------------------------------------------------------------
+SET SERVEROUTPUT ON;
+
+DECLARE
+    a NUMBER := 10;
+    b NUMBER := 0;
+    c NUMBER;
+BEGIN
+    c := a / b;
+    DBMS_OUTPUT.PUT_LINE('Result = ' || c);
+
+EXCEPTION
+    WHEN ZERO_DIVIDE THEN
+        DBMS_OUTPUT.PUT_LINE('Error: Division by zero');
+END;
+/
+
+--------------------------------------------------------------------
+EXPECTED OUTPUT
+--------------------------------------------------------------------
+Error: Division by zero
+
+--------------------------------------------------------------------
+PROCEDURE
+--------------------------------------------------------------------
+1. Declare two numeric variables.
+2. Assign zero to the divisor.
+3. Attempt to divide the first number by the second.
+4. Handle the ZERO_DIVIDE exception in the exception section.
+5. Display the error message.
+6. Execute the block and observe the result.
+
+--------------------------------------------------------------------
+OBSERVATION
+--------------------------------------------------------------------
+The division operation raised the predefined ZERO_DIVIDE exception.
+The exception handler caught it and displayed a message. The
+statement that displays the result was not executed because control
+passed directly to the exception section.
+
+--------------------------------------------------------------------
+CONCLUSION
+--------------------------------------------------------------------
+Predefined exception handling was implemented successfully to handle
+division-by-zero errors.

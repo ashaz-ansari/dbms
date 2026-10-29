@@ -1,0 +1,73 @@
+PRACTICAL 12: CREATE SIMPLE AND COMPOSITE INDEXES AND DROP THEM
+Subject : Relational Database Management System (CM41201)
+College : Government Polytechnic, Pune
+
+--------------------------------------------------------------------
+AIM
+--------------------------------------------------------------------
+To create simple and composite indexes and remove them using SQL
+commands.
+
+--------------------------------------------------------------------
+THEORY
+--------------------------------------------------------------------
+An index is a database object that helps Oracle locate records more
+efficiently, in a similar way to the index of a book.
+
+  Simple index    : Created on a single column.
+  Composite index : Created on two or more columns. It is useful
+                    when queries filter on the leading columns of
+                    the index.
+
+Indexes can improve retrieval performance, but they require storage
+and may add overhead to insert, update and delete operations because
+the index must also be maintained. A unique index can be created
+using CREATE UNIQUE INDEX, and Oracle automatically creates an index
+for a PRIMARY KEY or UNIQUE constraint.
+
+--------------------------------------------------------------------
+SQL CODE
+--------------------------------------------------------------------
+-- Simple index
+CREATE INDEX Idx_Student_Name
+ON Student3(Name);
+
+-- Composite index
+CREATE INDEX Idx_Student_City_Marks
+ON Student3(City, Marks);
+
+SELECT * FROM Student3
+WHERE Name = 'Rahul';
+
+SELECT * FROM Student3
+WHERE City = 'Pune'
+AND Marks > 80;
+
+DROP INDEX Idx_Student_Name;
+
+DROP INDEX Idx_Student_City_Marks;
+
+-- NOTE: The Student3 table is created in Practical 6.
+
+--------------------------------------------------------------------
+PROCEDURE
+--------------------------------------------------------------------
+1. Create a simple index on the Name column.
+2. Create a composite index on City and Marks.
+3. Execute queries that filter using the indexed columns.
+4. Observe the query results.
+5. Drop both indexes using the DROP INDEX command.
+
+--------------------------------------------------------------------
+OBSERVATION
+--------------------------------------------------------------------
+Both indexes were created successfully and could be used by Oracle's
+query optimiser when appropriate. The queries returned the matching
+student records. The execution plan of the queries can be checked
+using EXPLAIN PLAN to confirm whether the index is used.
+
+--------------------------------------------------------------------
+CONCLUSION
+--------------------------------------------------------------------
+Simple and composite indexes were created and dropped successfully.
+Their role in improving data retrieval was studied.

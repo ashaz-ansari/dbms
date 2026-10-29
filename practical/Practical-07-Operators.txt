@@ -1,0 +1,95 @@
+PRACTICAL 7: WRITE QUERIES USING SET, RELATIONAL, ARITHMETIC AND
+              LOGICAL OPERATORS
+Subject : Relational Database Management System (CM41201)
+College : Government Polytechnic, Pune
+
+--------------------------------------------------------------------
+AIM
+--------------------------------------------------------------------
+To implement different types of SQL operators.
+
+--------------------------------------------------------------------
+THEORY
+--------------------------------------------------------------------
+SQL operators perform comparisons, calculations and logical
+operations.
+
+  Relational operators : =, >, <, >=, <=, != (or <>) and BETWEEN.
+  Arithmetic operators : +, -, * and /.
+  Logical operators    : AND, OR and NOT.
+  Set operators        : Combine the results of two compatible
+                         queries.
+                           UNION     - all distinct rows from both
+                                       queries.
+                           UNION ALL - all rows including
+                                       duplicates.
+                           INTERSECT - rows common to both queries.
+                           MINUS     - rows present in the first
+                                       query but absent from the
+                                       second.
+
+For set operators, both queries must have the same number of columns
+with compatible data types.
+
+--------------------------------------------------------------------
+SQL CODE
+--------------------------------------------------------------------
+-- Relational operator
+SELECT * FROM Student3
+WHERE Marks >= 80;
+
+-- Arithmetic operator
+SELECT Name, Marks + 5 AS New_Marks
+FROM Student3;
+
+-- Logical operators
+SELECT * FROM Student3
+WHERE City = 'Pune' AND Marks > 80;
+
+SELECT * FROM Student3
+WHERE City = 'Pune' OR City = 'Mumbai';
+
+-- Set operators
+SELECT City FROM Student3
+WHERE City = 'Pune'
+UNION
+SELECT City FROM Student3
+WHERE City = 'Mumbai';
+
+SELECT City FROM Student3
+INTERSECT
+SELECT City FROM Student3
+WHERE City = 'Pune';
+
+SELECT City FROM Student3
+MINUS
+SELECT City FROM Student3
+WHERE City = 'Pune';
+
+-- NOTE: The Student3 table is created in Practical 6. Run that
+-- CREATE TABLE and INSERT statements first if the table does not
+-- already exist in the schema.
+
+--------------------------------------------------------------------
+PROCEDURE
+--------------------------------------------------------------------
+1. Use relational operators to compare marks.
+2. Use arithmetic operators to calculate modified marks.
+3. Use logical operators to combine conditions.
+4. Execute UNION to combine distinct results.
+5. Execute INTERSECT to find common results.
+6. Execute MINUS to return rows present in the first query but
+   absent from the second.
+
+--------------------------------------------------------------------
+OBSERVATION
+--------------------------------------------------------------------
+The queries performed calculations, comparisons and logical
+filtering. Set operators combined or compared query results. The
+MINUS query returned no rows because every 'Pune' city value is also
+present in the second query.
+
+--------------------------------------------------------------------
+CONCLUSION
+--------------------------------------------------------------------
+Different SQL operators were implemented successfully.

@@ -1,0 +1,81 @@
+PRACTICAL 2: APPLY CONSTRAINTS ON A RELATION
+Subject : Relational Database Management System (CM41201)
+College : Government Polytechnic, Pune
+
+--------------------------------------------------------------------
+AIM
+--------------------------------------------------------------------
+To apply different integrity constraints to a database table.
+
+--------------------------------------------------------------------
+THEORY
+--------------------------------------------------------------------
+Constraints are rules applied to table columns to maintain the
+accuracy and integrity of data.
+
+  PRIMARY KEY : Uniquely identifies each record. It cannot be NULL
+                and cannot be duplicated.
+  NOT NULL    : Prevents missing (NULL) values in a column.
+  UNIQUE      : Prevents duplicate values in a column. A UNIQUE
+                column may contain NULL values.
+  CHECK       : Validates a condition on the values entered.
+  FOREIGN KEY : Maintains a relationship between two tables by
+                referring to a primary key in another table.
+  DEFAULT     : Supplies a value automatically when the user does
+                not specify one.
+
+Constraints may be given at column level (with the column) or at
+table level (after all columns are defined) using the CONSTRAINT
+keyword, which also allows naming the constraint.
+
+--------------------------------------------------------------------
+SQL CODE
+--------------------------------------------------------------------
+CREATE TABLE Student (
+    RollNo NUMBER PRIMARY KEY,
+    Name VARCHAR2(30) NOT NULL,
+    Email VARCHAR2(50) UNIQUE,
+    Age NUMBER CHECK (Age >= 16),
+    City VARCHAR2(20) DEFAULT 'Pune'
+);
+
+INSERT INTO Student
+VALUES (1, 'Rahul', 'rahul@example.com', 18, 'Pune');
+
+INSERT INTO Student
+VALUES (2, 'Priya', 'priya@example.com', 19, 'Mumbai');
+
+SELECT * FROM Student;
+
+-- A record with a duplicate RollNo or Email is rejected here.
+INSERT INTO Student
+VALUES (1, 'Amit', 'amit@example.com', 20, 'Pune');
+
+-- A record with Age below 16 is rejected here.
+INSERT INTO Student
+VALUES (3, 'Neha', 'neha@example.com', 15, 'Pune');
+
+--------------------------------------------------------------------
+PROCEDURE
+--------------------------------------------------------------------
+1. Create a table with the required columns.
+2. Apply the primary key and other constraints.
+3. Insert valid records.
+4. Try inserting duplicate RollNo or Email values.
+5. Try inserting an Age below 16.
+6. Observe that Oracle rejects records that violate constraints.
+
+--------------------------------------------------------------------
+OBSERVATION
+--------------------------------------------------------------------
+Valid records are inserted successfully. Invalid values violating
+primary key, unique or check constraints are rejected with an error
+such as:
+  ORA-00001: unique constraint violated
+  ORA-02290: check constraint violated
+
+--------------------------------------------------------------------
+CONCLUSION
+--------------------------------------------------------------------
+Different integrity constraints were applied successfully to
+maintain database accuracy and consistency.

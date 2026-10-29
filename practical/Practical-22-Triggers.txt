@@ -1,0 +1,97 @@
+PRACTICAL 22: CREATE AND DELETE A TRIGGER
+Subject : Relational Database Management System (CM41201)
+College : Government Polytechnic, Pune
+
+--------------------------------------------------------------------
+AIM
+--------------------------------------------------------------------
+To create and delete a database trigger using PL/SQL.
+
+--------------------------------------------------------------------
+THEORY
+--------------------------------------------------------------------
+A trigger is a stored PL/SQL block that executes automatically when
+a specified database event occurs.
+
+Types of triggers:
+  Based on timing :
+    BEFORE - executes before the event.
+    AFTER  - executes after the event.
+    INSTEAD OF - used on views.
+  Based on level  :
+    Statement level - executes once for the statement (default).
+    Row level       - executes once for each affected row, using the
+                      FOR EACH ROW clause.
+
+Triggers can be associated with INSERT, UPDATE or DELETE operations.
+They are commonly used for auditing, validation and maintaining data
+consistency.
+
+In a row-level trigger, :NEW refers to the new value and :OLD refers
+to the old value of the column.
+
+Triggers can be enabled, disabled or removed:
+  ALTER TRIGGER trigger_name DISABLE;
+  ALTER TRIGGER trigger_name ENABLE;
+  DROP TRIGGER trigger_name;
+
+--------------------------------------------------------------------
+PREREQUISITE TABLE
+--------------------------------------------------------------------
+The Cust2 table is created in Practical 19.
+
+--------------------------------------------------------------------
+PROGRAM TO CREATE A TRIGGER
+--------------------------------------------------------------------
+CREATE OR REPLACE TRIGGER Cust2_Insert_Trigger
+AFTER INSERT ON Cust2
+FOR EACH ROW
+BEGIN
+    DBMS_OUTPUT.PUT_LINE(
+        'New customer record inserted'
+    );
+END;
+/
+
+--------------------------------------------------------------------
+TEST THE TRIGGER
+--------------------------------------------------------------------
+SET SERVEROUTPUT ON;
+
+INSERT INTO Cust2
+VALUES (104, 'Riya', 30000);
+
+COMMIT;
+
+SELECT * FROM Cust2;
+
+--------------------------------------------------------------------
+DELETE THE TRIGGER
+--------------------------------------------------------------------
+DROP TRIGGER Cust2_Insert_Trigger;
+
+--------------------------------------------------------------------
+PROCEDURE
+--------------------------------------------------------------------
+1. Ensure that the Cust2 table exists.
+2. Create a trigger that executes after an insertion.
+3. Insert a new customer record.
+4. Verify the inserted record using SELECT * FROM Cust2.
+5. Delete the trigger using DROP TRIGGER.
+6. Verify that the trigger no longer exists.
+
+--------------------------------------------------------------------
+OBSERVATION
+--------------------------------------------------------------------
+The trigger was created and associated with the INSERT event. The
+new record was inserted into the table. The DBMS_OUTPUT message
+inside a trigger may not appear in every environment, but the
+trigger can still execute.
+
+The trigger fires automatically for each row inserted, without any
+explicit call from the user.
+
+--------------------------------------------------------------------
+CONCLUSION
+--------------------------------------------------------------------
+A database trigger was created, tested and deleted successfully.

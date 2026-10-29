@@ -1,0 +1,81 @@
+PRACTICAL 8: WRITE QUERIES USING SQL FUNCTIONS
+Subject : Relational Database Management System (CM41201)
+College : Government Polytechnic, Pune
+
+--------------------------------------------------------------------
+AIM
+--------------------------------------------------------------------
+To use date, time, string and aggregate functions in SQL.
+
+--------------------------------------------------------------------
+THEORY
+--------------------------------------------------------------------
+SQL functions process data and return calculated results.
+
+  String functions    : Manipulate text.
+                          UPPER  - converts text to uppercase.
+                          LOWER  - converts text to lowercase.
+                          LENGTH - returns the number of characters.
+                          INITCAP- capitalises the first letter of
+                                   each word.
+  Date functions      : Operate on dates.
+                          SYSDATE    - current date and time of the
+                                       database server.
+                          ADD_MONTHS - adds the given number of
+                                       months to a date.
+                          MONTHS_BETWEEN - number of months between
+                                       two dates.
+  Aggregate functions : Calculate a single result from multiple
+                        rows.
+                          COUNT - number of rows.
+                          SUM   - total of a numeric column.
+                          AVG   - average value.
+                          MAX   - highest value.
+                          MIN   - lowest value.
+
+DUAL is a special one-row, one-column dummy table supplied by Oracle
+and is used when a function has to be executed without reading from
+a real table.
+
+--------------------------------------------------------------------
+SQL CODE
+--------------------------------------------------------------------
+SELECT UPPER(Name), LOWER(City), LENGTH(Name)
+FROM Student3;
+
+SELECT SYSDATE FROM DUAL;
+
+SELECT ADD_MONTHS(SYSDATE, 2)
+FROM DUAL;
+
+SELECT COUNT(*), SUM(Marks), AVG(Marks)
+FROM Student3;
+
+SELECT MAX(Marks), MIN(Marks)
+FROM Student3;
+
+-- NOTE: The Student3 table is created in Practical 6.
+
+--------------------------------------------------------------------
+PROCEDURE
+--------------------------------------------------------------------
+1. Execute string functions to convert text and find its length.
+2. Use SYSDATE to display the current database date.
+3. Use ADD_MONTHS to calculate a future date.
+4. Use COUNT to count records.
+5. Use SUM and AVG to calculate total and average marks.
+6. Use MAX and MIN to find the highest and lowest marks.
+
+--------------------------------------------------------------------
+OBSERVATION
+--------------------------------------------------------------------
+The string functions processed text, date functions returned date
+values, and aggregate functions calculated results from the table.
+For the four records of Student3, COUNT returned 4, SUM returned
+330 and AVG returned 82.5.
+
+--------------------------------------------------------------------
+CONCLUSION
+--------------------------------------------------------------------
+Different SQL functions were executed successfully to manipulate
+and analyse database values.

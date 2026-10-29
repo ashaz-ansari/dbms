@@ -1,0 +1,80 @@
+PRACTICAL 6: WRITE QUERIES USING DIFFERENT TYPES OF CLAUSES
+Subject : Relational Database Management System (CM41201)
+College : Government Polytechnic, Pune
+
+--------------------------------------------------------------------
+AIM
+--------------------------------------------------------------------
+To use different SQL clauses to retrieve records according to
+specified conditions.
+
+--------------------------------------------------------------------
+THEORY
+--------------------------------------------------------------------
+SQL clauses help filter, group, sort and limit the records returned
+by a query.
+
+  WHERE    : Filters rows according to a condition.
+  ORDER BY : Sorts the output. ASC is the default order, DESC sorts
+             in descending order.
+  GROUP BY : Groups rows having common values so that aggregate
+             functions can be applied to each group.
+  HAVING   : Filters grouped results. WHERE cannot be used with
+             aggregate functions, so HAVING is used instead.
+
+Order of execution in a SELECT statement:
+  FROM -> WHERE -> GROUP BY -> HAVING -> SELECT -> ORDER BY
+
+--------------------------------------------------------------------
+SQL CODE
+--------------------------------------------------------------------
+CREATE TABLE Student3 (
+    RollNo NUMBER,
+    Name VARCHAR2(30),
+    City VARCHAR2(20),
+    Marks NUMBER
+);
+
+INSERT INTO Student3 VALUES (1, 'Rahul', 'Pune', 85);
+INSERT INTO Student3 VALUES (2, 'Priya', 'Mumbai', 90);
+INSERT INTO Student3 VALUES (3, 'Amit', 'Pune', 75);
+INSERT INTO Student3 VALUES (4, 'Neha', 'Mumbai', 80);
+
+SELECT * FROM Student3;
+
+SELECT * FROM Student3
+WHERE Marks > 80;
+
+SELECT * FROM Student3
+ORDER BY Marks DESC;
+
+SELECT City, AVG(Marks)
+FROM Student3
+GROUP BY City;
+
+SELECT City, AVG(Marks)
+FROM Student3
+GROUP BY City
+HAVING AVG(Marks) > 80;
+
+--------------------------------------------------------------------
+PROCEDURE
+--------------------------------------------------------------------
+1. Create the Student3 table and insert sample records.
+2. Use WHERE to retrieve students scoring above 80.
+3. Use ORDER BY to sort students by marks.
+4. Use GROUP BY to calculate average marks city-wise.
+5. Use HAVING to filter groups according to average marks.
+
+--------------------------------------------------------------------
+OBSERVATION
+--------------------------------------------------------------------
+The queries returned filtered, sorted and grouped records based on
+the specified conditions. The HAVING clause displayed only those
+cities whose average marks were greater than 80.
+
+--------------------------------------------------------------------
+CONCLUSION
+--------------------------------------------------------------------
+Different SQL clauses were used successfully to retrieve and
+analyse data.

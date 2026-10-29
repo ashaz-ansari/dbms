@@ -1,0 +1,100 @@
+PRACTICAL 13: PL/SQL PROGRAM USING CONDITIONAL STATEMENTS
+Subject : Relational Database Management System (CM41201)
+College : Government Polytechnic, Pune
+
+--------------------------------------------------------------------
+AIM
+--------------------------------------------------------------------
+To implement conditional statements using IF...THEN,
+IF...THEN...ELSE, nested IF and IF...THEN...ELSIF.
+
+--------------------------------------------------------------------
+THEORY
+--------------------------------------------------------------------
+Conditional statements control the flow of a PL/SQL program based on
+conditions.
+
+  IF...THEN          : Executes statements when a condition is true.
+  IF...THEN...ELSE   : Provides an alternative when the condition is
+                       false.
+  Nested IF          : Places one condition inside another.
+  IF...THEN...ELSIF  : Checks multiple conditions in sequence. As
+                       soon as one condition is true, the remaining
+                       conditions are skipped.
+  CASE               : An alternative to ELSIF for selecting one of
+                       several alternatives.
+
+Every IF must be closed with END IF; and the whole block ends with
+END; followed by a slash (/) in SQL*Plus.
+
+--------------------------------------------------------------------
+PROGRAM
+--------------------------------------------------------------------
+SET SERVEROUTPUT ON;
+
+DECLARE
+    marks NUMBER := 78;
+BEGIN
+    IF marks >= 40 THEN
+        DBMS_OUTPUT.PUT_LINE('Pass');
+    END IF;
+
+    IF marks >= 40 THEN
+        DBMS_OUTPUT.PUT_LINE('Passed');
+    ELSE
+        DBMS_OUTPUT.PUT_LINE('Failed');
+    END IF;
+
+    IF marks >= 75 THEN
+        DBMS_OUTPUT.PUT_LINE('Distinction');
+    ELSE
+        IF marks >= 60 THEN
+            DBMS_OUTPUT.PUT_LINE('First Class');
+        ELSE
+            DBMS_OUTPUT.PUT_LINE('Other Grade');
+        END IF;
+    END IF;
+
+    IF marks >= 75 THEN
+        DBMS_OUTPUT.PUT_LINE('Grade A');
+    ELSIF marks >= 60 THEN
+        DBMS_OUTPUT.PUT_LINE('Grade B');
+    ELSIF marks >= 40 THEN
+        DBMS_OUTPUT.PUT_LINE('Grade C');
+    ELSE
+        DBMS_OUTPUT.PUT_LINE('Fail');
+    END IF;
+END;
+/
+
+--------------------------------------------------------------------
+EXPECTED OUTPUT
+--------------------------------------------------------------------
+Pass
+Passed
+Distinction
+Grade A
+
+--------------------------------------------------------------------
+PROCEDURE
+--------------------------------------------------------------------
+1. Declare a variable to store marks.
+2. Use IF...THEN to check whether the student has passed.
+3. Use IF...THEN...ELSE to display pass or fail.
+4. Use a nested IF to classify the marks.
+5. Use ELSIF to select the appropriate grade.
+6. Execute the block and observe the output.
+
+--------------------------------------------------------------------
+OBSERVATION
+--------------------------------------------------------------------
+The program evaluated the conditions and displayed messages
+according to the marks stored in the variable. Since marks was 78,
+only the branch for the true condition was executed in each
+statement.
+
+--------------------------------------------------------------------
+CONCLUSION
+--------------------------------------------------------------------
+PL/SQL conditional statements were implemented successfully to
+control program execution.

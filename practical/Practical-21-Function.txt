@@ -1,0 +1,109 @@
+PRACTICAL 21: IMPLEMENT A FUNCTION IN PL/SQL
+Subject : Relational Database Management System (CM41201)
+College : Government Polytechnic, Pune
+
+--------------------------------------------------------------------
+AIM
+--------------------------------------------------------------------
+To create and execute a user-defined function in PL/SQL.
+
+--------------------------------------------------------------------
+THEORY
+--------------------------------------------------------------------
+A function is a named PL/SQL program that performs an operation and
+returns a value using the RETURN statement. Functions can accept
+parameters and are useful for calculations and data processing.
+
+Difference between a procedure and a function:
+  Procedure : May or may not return a value. It is called as a
+              statement. It can use OUT parameters.
+  Function  : Must return a value of its declared return type. It is
+              called as part of an expression and can be used
+              directly inside a SELECT statement.
+
+Syntax:
+  CREATE OR REPLACE FUNCTION function_name
+  (parameter_list)
+  RETURN return_datatype
+  IS
+      declarations;
+  BEGIN
+      statements;
+      RETURN value;
+  END;
+
+--------------------------------------------------------------------
+PREREQUISITE TABLE
+--------------------------------------------------------------------
+The Cust2 table is created in Practical 19.
+
+--------------------------------------------------------------------
+PROGRAM
+--------------------------------------------------------------------
+CREATE OR REPLACE FUNCTION Get_Balance
+(
+    p_customer_id IN NUMBER
+)
+RETURN NUMBER
+IS
+    v_balance NUMBER;
+BEGIN
+    SELECT Balance
+    INTO v_balance
+    FROM Cust2
+    WHERE Customer_ID = p_customer_id;
+
+    RETURN v_balance;
+
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+        RETURN 0;
+END;
+/
+
+--------------------------------------------------------------------
+EXECUTION BLOCK
+--------------------------------------------------------------------
+SET SERVEROUTPUT ON;
+
+DECLARE
+    v_result NUMBER;
+BEGIN
+    v_result := Get_Balance(101);
+
+    DBMS_OUTPUT.PUT_LINE(
+        'Balance: ' || v_result
+    );
+END;
+/
+
+-- The function can also be called directly inside a query:
+SELECT Customer_Name, Get_Balance(Customer_ID)
+FROM Cust2;
+
+--------------------------------------------------------------------
+EXPECTED OUTPUT
+--------------------------------------------------------------------
+Balance: 26000
+
+--------------------------------------------------------------------
+PROCEDURE
+--------------------------------------------------------------------
+1. Create the Get_Balance function.
+2. Accept the customer ID as an input parameter.
+3. Retrieve the corresponding balance.
+4. Return the balance using RETURN.
+5. Call the function from a PL/SQL block.
+6. Display the returned value.
+
+--------------------------------------------------------------------
+OBSERVATION
+--------------------------------------------------------------------
+The function returned the balance of the specified customer. If no
+matching record was found, it returned zero.
+
+--------------------------------------------------------------------
+CONCLUSION
+--------------------------------------------------------------------
+A user-defined function was created and executed successfully to
+return customer balance information.

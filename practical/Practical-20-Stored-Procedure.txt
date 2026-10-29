@@ -1,0 +1,108 @@
+PRACTICAL 20: IMPLEMENT A STORED PROCEDURE
+Subject : Relational Database Management System (CM41201)
+College : Government Polytechnic, Pune
+
+--------------------------------------------------------------------
+AIM
+--------------------------------------------------------------------
+To create and execute a stored procedure in PL/SQL.
+
+--------------------------------------------------------------------
+THEORY
+--------------------------------------------------------------------
+A stored procedure is a named PL/SQL program stored in the database.
+It performs a specific operation and can accept parameters.
+
+Advantages:
+  - Code reuse: the same logic can be called many times.
+  - Better performance, as the compiled code is stored in the
+    database.
+  - Improved security, since users can be given permission to run a
+    procedure without direct access to the tables.
+  - Easier maintenance, as the logic exists in one place.
+
+Parameter modes:
+  IN    - passes a value into the procedure (default mode).
+  OUT   - returns a value to the caller.
+  IN OUT- passes a value in and returns a modified value.
+
+A procedure is executed by calling it from a PL/SQL block, for
+example:
+  BEGIN
+      procedure_name(argument);
+  END;
+  /
+
+--------------------------------------------------------------------
+PREREQUISITE TABLE
+--------------------------------------------------------------------
+The Cust2 table is created in Practical 19.
+
+--------------------------------------------------------------------
+PROGRAM
+--------------------------------------------------------------------
+CREATE OR REPLACE PROCEDURE Show_Balance
+(
+    p_customer_id IN NUMBER
+)
+IS
+    v_balance NUMBER;
+BEGIN
+    SELECT Balance
+    INTO v_balance
+    FROM Cust2
+    WHERE Customer_ID = p_customer_id;
+
+    DBMS_OUTPUT.PUT_LINE(
+        'Customer ID: ' || p_customer_id
+    );
+
+    DBMS_OUTPUT.PUT_LINE(
+        'Balance: ' || v_balance
+    );
+
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+        DBMS_OUTPUT.PUT_LINE('Customer not found');
+END;
+/
+
+--------------------------------------------------------------------
+EXECUTION BLOCK
+--------------------------------------------------------------------
+SET SERVEROUTPUT ON;
+
+BEGIN
+    Show_Balance(101);
+END;
+/
+
+--------------------------------------------------------------------
+EXPECTED OUTPUT
+--------------------------------------------------------------------
+Customer ID: 101
+Balance: 26000
+
+--------------------------------------------------------------------
+PROCEDURE
+--------------------------------------------------------------------
+1. Ensure that the Cust2 table contains customer records.
+2. Create the Show_Balance procedure.
+3. Declare a parameter to receive the customer ID.
+4. Retrieve the customer's balance using SELECT INTO.
+5. Display the customer ID and balance.
+6. Execute the procedure by passing customer ID 101.
+
+--------------------------------------------------------------------
+OBSERVATION
+--------------------------------------------------------------------
+The procedure retrieved and displayed the balance of the specified
+customer. If the customer ID does not exist, the exception handler
+displays a message. The balance shown is 26000 because the balance
+of customer 101 was increased by 1000 in Practical 19.
+
+--------------------------------------------------------------------
+CONCLUSION
+--------------------------------------------------------------------
+A stored procedure was created and executed successfully to retrieve
+customer information.

@@ -1,0 +1,84 @@
+PRACTICAL 1: DRAW AN ER DIAGRAM FOR A GIVEN DATABASE
+Subject : Relational Database Management System (CM41201)
+College : Government Polytechnic, Pune
+
+--------------------------------------------------------------------
+AIM
+--------------------------------------------------------------------
+To draw an Entity Relationship (ER) diagram for a student database.
+
+--------------------------------------------------------------------
+THEORY
+--------------------------------------------------------------------
+An ER diagram is a graphical representation of entities, attributes
+and relationships in a database.
+
+  Entity      : A real-world object about which data is stored,
+                such as a student or a course.
+  Attribute   : A property that describes an entity, such as name
+                or address.
+  Relationship: An association between two entities, such as a
+                student enrolling in a course.
+  Primary Key : An attribute that uniquely identifies each entity
+                instance (marked PK).
+
+ER diagrams help in database planning and design before the tables
+are actually created. They act as a blueprint for the final schema.
+
+Symbols commonly used:
+  Rectangle        - Entity
+  Ellipse          - Attribute
+  Diamond          - Relationship
+  Underlined text  - Primary key
+
+--------------------------------------------------------------------
+ER DIAGRAM
+--------------------------------------------------------------------
++----------------+          +----------------+
+|    STUDENT     |          |     COURSE     |
++----------------+          +----------------+
+| Student_ID (PK)|          | Course_ID (PK) |
+| Name           |          | Course_Name    |
+| Address        |          | Duration       |
+| Phone          |          +----------------+
++----------------+
+        |                         |
+        +------ ENROLLMENT -------+
+              Student_ID
+              Course_ID
+
+--------------------------------------------------------------------
+ENTITIES AND ATTRIBUTES
+--------------------------------------------------------------------
+1. Student    : Student_ID (PK), Name, Address, Phone.
+2. Course     : Course_ID (PK), Course_Name, Duration.
+3. Enrollment : Student_ID, Course_ID - connects students with
+                courses.
+
+Cardinality: One student can enroll in many courses, and one course
+can have many students, so the relationship is many-to-many (M:N).
+A separate Enrollment entity is used to resolve it into two
+one-to-many relationships.
+
+--------------------------------------------------------------------
+PROCEDURE
+--------------------------------------------------------------------
+1. Identify the entities required for the application.
+2. List the attributes of each entity.
+3. Select a primary key for each entity.
+4. Identify relationships between entities.
+5. Draw the entities, attributes and relationships.
+6. Verify that the diagram represents the required database.
+
+--------------------------------------------------------------------
+OBSERVATION
+--------------------------------------------------------------------
+The entities Student and Course and their attributes were
+identified. Enrollment represents the relationship between students
+and courses.
+
+--------------------------------------------------------------------
+CONCLUSION
+--------------------------------------------------------------------
+An ER diagram was prepared to represent the structure and
+relationships of a student database.

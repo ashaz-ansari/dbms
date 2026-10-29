@@ -1,0 +1,79 @@
+PRACTICAL 18: PL/SQL PROGRAM USING USER-DEFINED EXCEPTION
+Subject : Relational Database Management System (CM41201)
+College : Government Polytechnic, Pune
+
+--------------------------------------------------------------------
+AIM
+--------------------------------------------------------------------
+To create and handle a user-defined exception in PL/SQL.
+
+--------------------------------------------------------------------
+THEORY
+--------------------------------------------------------------------
+User-defined exceptions are created by programmers to handle
+application-specific conditions that Oracle does not already cover.
+
+Steps to use a user-defined exception:
+  1. Declare the exception in the declaration section.
+  2. Raise it using the RAISE statement when the required condition
+     occurs.
+  3. Handle it in the exception section.
+
+The RAISE_APPLICATION_ERROR procedure can also be used to return a
+custom error number (between -20000 and -20999) and message to the
+calling application.
+
+An exception is raised using:
+  RAISE exception_name;
+
+and handled using:
+  WHEN exception_name THEN ...
+
+--------------------------------------------------------------------
+PROGRAM
+--------------------------------------------------------------------
+SET SERVEROUTPUT ON;
+
+DECLARE
+    balance NUMBER := 500;
+    insufficient_balance EXCEPTION;
+BEGIN
+    IF balance < 1000 THEN
+        RAISE insufficient_balance;
+    END IF;
+
+    DBMS_OUTPUT.PUT_LINE('Sufficient balance');
+
+EXCEPTION
+    WHEN insufficient_balance THEN
+        DBMS_OUTPUT.PUT_LINE('Balance is insufficient');
+END;
+/
+
+--------------------------------------------------------------------
+EXPECTED OUTPUT
+--------------------------------------------------------------------
+Balance is insufficient
+
+--------------------------------------------------------------------
+PROCEDURE
+--------------------------------------------------------------------
+1. Declare a balance variable.
+2. Declare the user-defined exception insufficient_balance.
+3. Check whether the balance is less than 1000.
+4. Raise the exception when the condition is true.
+5. Handle the exception in the exception section.
+6. Execute the block and observe the message.
+
+--------------------------------------------------------------------
+OBSERVATION
+--------------------------------------------------------------------
+Since the balance was below 1000, the program raised the
+user-defined exception and displayed the corresponding message. The
+statement that displays 'Sufficient balance' was skipped.
+
+--------------------------------------------------------------------
+CONCLUSION
+--------------------------------------------------------------------
+A user-defined exception was created and handled successfully in
+PL/SQL.

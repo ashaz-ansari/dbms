@@ -1,0 +1,72 @@
+PRACTICAL 15: PL/SQL PROGRAM USING WHILE LOOP
+Subject : Relational Database Management System (CM41201)
+College : Government Polytechnic, Pune
+
+--------------------------------------------------------------------
+AIM
+--------------------------------------------------------------------
+To implement an iterative statement using a WHILE LOOP.
+
+--------------------------------------------------------------------
+THEORY
+--------------------------------------------------------------------
+A WHILE LOOP repeatedly executes statements as long as a specified
+condition remains true. The condition is checked before each
+iteration (entry-controlled loop). If the condition is false
+initially, the loop body does not execute even once.
+
+Syntax:
+  WHILE condition LOOP
+      statements;
+  END LOOP;
+
+A counter variable is commonly used to control the number of
+iterations and prevent an infinite loop. The counter must be
+declared and initialised before the loop, and incremented inside the
+loop.
+
+--------------------------------------------------------------------
+PROGRAM
+--------------------------------------------------------------------
+SET SERVEROUTPUT ON;
+
+DECLARE
+    i NUMBER := 1;
+BEGIN
+    WHILE i <= 5 LOOP
+        DBMS_OUTPUT.PUT_LINE('Value = ' || i);
+        i := i + 1;
+    END LOOP;
+END;
+/
+
+--------------------------------------------------------------------
+EXPECTED OUTPUT
+--------------------------------------------------------------------
+Value = 1
+Value = 2
+Value = 3
+Value = 4
+Value = 5
+
+--------------------------------------------------------------------
+PROCEDURE
+--------------------------------------------------------------------
+1. Declare a counter variable and initialise it to 1.
+2. Specify the loop condition as i <= 5.
+3. Display the current counter value.
+4. Increment the counter by 1.
+5. Repeat the loop while the condition is true.
+6. Execute the program and verify the output.
+
+--------------------------------------------------------------------
+OBSERVATION
+--------------------------------------------------------------------
+The loop displayed values from 1 to 5. When the counter became 6,
+the condition became false and the loop terminated.
+
+--------------------------------------------------------------------
+CONCLUSION
+--------------------------------------------------------------------
+The WHILE loop was implemented successfully to repeat statements
+until a condition became false.

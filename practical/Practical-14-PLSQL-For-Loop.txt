@@ -1,0 +1,88 @@
+PRACTICAL 14: PL/SQL PROGRAM USING FOR LOOP AND REVERSE FOR LOOP
+Subject : Relational Database Management System (CM41201)
+College : Government Polytechnic, Pune
+
+--------------------------------------------------------------------
+AIM
+--------------------------------------------------------------------
+To implement iterative statements using FOR LOOP and REVERSE FOR
+LOOP.
+
+--------------------------------------------------------------------
+THEORY
+--------------------------------------------------------------------
+Loops are used to execute a set of statements repeatedly.
+
+  FOR LOOP         : Automatically increments its counter from the
+                     lower limit to the upper limit.
+  REVERSE FOR LOOP : Runs through the same range in descending
+                     order.
+
+Syntax:
+  FOR counter IN [REVERSE] lower_limit..upper_limit LOOP
+      statements;
+  END LOOP;
+
+The loop counter is declared implicitly by PL/SQL and cannot be
+assigned a value inside the loop. It is available only within the
+loop. These loops are useful for repetitive calculations and
+displaying sequences of values.
+
+--------------------------------------------------------------------
+PROGRAM
+--------------------------------------------------------------------
+SET SERVEROUTPUT ON;
+
+BEGIN
+    DBMS_OUTPUT.PUT_LINE('Forward Loop');
+
+    FOR i IN 1..5 LOOP
+        DBMS_OUTPUT.PUT_LINE(i);
+    END LOOP;
+
+    DBMS_OUTPUT.PUT_LINE('Reverse Loop');
+
+    FOR i IN REVERSE 1..5 LOOP
+        DBMS_OUTPUT.PUT_LINE(i);
+    END LOOP;
+END;
+/
+
+--------------------------------------------------------------------
+EXPECTED OUTPUT
+--------------------------------------------------------------------
+Forward Loop
+1
+2
+3
+4
+5
+Reverse Loop
+5
+4
+3
+2
+1
+
+--------------------------------------------------------------------
+PROCEDURE
+--------------------------------------------------------------------
+1. Start a PL/SQL block.
+2. Use a FOR LOOP from 1 to 5.
+3. Display the counter value during each iteration.
+4. Use REVERSE FOR LOOP over the same range.
+5. Display the values in descending order.
+6. Execute the program and verify the output.
+
+--------------------------------------------------------------------
+OBSERVATION
+--------------------------------------------------------------------
+The forward loop displayed values from 1 to 5, while the reverse
+loop displayed values from 5 to 1. The loop terminated automatically
+after the last value of the range.
+
+--------------------------------------------------------------------
+CONCLUSION
+--------------------------------------------------------------------
+Forward and reverse FOR loops were implemented successfully in
+PL/SQL.

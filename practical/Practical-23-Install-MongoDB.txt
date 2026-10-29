@@ -1,0 +1,86 @@
+PRACTICAL 23: INSTALL MONGODB
+Subject : Relational Database Management System (CM41201)
+College : Government Polytechnic, Pune
+
+--------------------------------------------------------------------
+AIM
+--------------------------------------------------------------------
+To install MongoDB and configure the database environment.
+
+--------------------------------------------------------------------
+THEORY
+--------------------------------------------------------------------
+MongoDB is a NoSQL document-oriented database that stores data in
+flexible, BSON-based documents. Unlike relational databases, it
+stores records in collections rather than rows in tables. MongoDB
+supports flexible schemas and is useful for applications that handle
+large amounts of structured or semi-structured data.
+
+Terminology comparison:
+  RDBMS          MongoDB
+  Database       Database
+  Table          Collection
+  Row            Document
+  Column         Field
+  Primary key    _id field (generated automatically)
+
+MongoDB Community Server provides the database engine, while MongoDB
+Compass is a graphical user interface used to manage databases,
+collections and documents. Installing Compass alone does not install
+or start the database server.
+
+Default port: 27017.
+
+--------------------------------------------------------------------
+SOFTWARE REQUIRED
+--------------------------------------------------------------------
+1. MongoDB Community Server
+2. MongoDB Compass
+3. Windows operating system
+
+--------------------------------------------------------------------
+PROCEDURE
+--------------------------------------------------------------------
+1. Visit the official MongoDB Community Server download page:
+   https://www.mongodb.com/try/download/community
+
+2. Select Windows and download the installer.
+
+3. Run the installer and follow the installation wizard.
+
+4. Configure MongoDB as a Windows service if that option is
+   available.
+
+5. Complete the installation.
+
+6. Open MongoDB Compass.
+
+7. Enter the connection string: mongodb://localhost:27017
+
+8. Click Connect.
+
+9. Verify that the local MongoDB server is accessible.
+
+The commands can also be verified from the command prompt:
+
+  mongod --version
+  mongosh
+
+--------------------------------------------------------------------
+OBSERVATION
+--------------------------------------------------------------------
+MongoDB Compass connects to the local server when MongoDB Community
+Server is installed and running. If the connection is refused, the
+server may not be installed, started or listening on the expected
+port.
+
+The MongoDB service status can be checked using the Windows Services
+window or with the command:
+  net start MongoDB
+
+--------------------------------------------------------------------
+CONCLUSION
+--------------------------------------------------------------------
+The MongoDB installation and connection procedure was studied.
+MongoDB Server and Compass were identified as the database engine
+and its graphical management tool.

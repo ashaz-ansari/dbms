@@ -1,0 +1,73 @@
+PRACTICAL 11: CREATE, ALTER AND DROP A SEQUENCE
+Subject : Relational Database Management System (CM41201)
+College : Government Polytechnic, Pune
+
+--------------------------------------------------------------------
+AIM
+--------------------------------------------------------------------
+To create and manage a sequence in Oracle SQL.
+
+--------------------------------------------------------------------
+THEORY
+--------------------------------------------------------------------
+A sequence is a database object that generates numeric values in a
+specified order. It is commonly used to generate unique identifiers
+for records, for example to supply values for a primary key column.
+
+  CREATE SEQUENCE : Creates a sequence.
+  START WITH      : Sets the first value generated.
+  INCREMENT BY    : Sets the interval between values.
+  NOCACHE         : Does not keep pre-generated values in memory.
+  NEXTVAL         : Generates and returns the next value.
+  CURRVAL         : Returns the last value generated in the current
+                    session. It cannot be used before NEXTVAL has
+                    been called in that session.
+  ALTER SEQUENCE  : Changes supported sequence properties such as
+                    the increment.
+  DROP SEQUENCE   : Removes the sequence.
+
+Note: START WITH cannot be altered using ALTER SEQUENCE. To change
+it, the sequence must be dropped and recreated.
+
+--------------------------------------------------------------------
+SQL CODE
+--------------------------------------------------------------------
+CREATE SEQUENCE Student_Seq
+START WITH 1
+INCREMENT BY 1
+NOCACHE;
+
+SELECT Student_Seq.NEXTVAL FROM DUAL;
+
+SELECT Student_Seq.CURRVAL FROM DUAL;
+
+ALTER SEQUENCE Student_Seq
+INCREMENT BY 2;
+
+SELECT Student_Seq.NEXTVAL FROM DUAL;
+
+DROP SEQUENCE Student_Seq;
+
+--------------------------------------------------------------------
+PROCEDURE
+--------------------------------------------------------------------
+1. Create a sequence starting at 1.
+2. Use NEXTVAL to generate the next value.
+3. Use CURRVAL after NEXTVAL has been accessed in the session.
+4. Change the increment using ALTER SEQUENCE.
+5. Generate another value to observe the changed increment.
+6. Drop the sequence when the experiment is complete.
+
+--------------------------------------------------------------------
+OBSERVATION
+--------------------------------------------------------------------
+The sequence generated numeric values automatically. After
+alteration, the sequence increment changed as specified. With the
+increment changed from 1 to 2, the values moved in steps of two
+(for example 1, then 3).
+
+--------------------------------------------------------------------
+CONCLUSION
+--------------------------------------------------------------------
+Oracle sequence operations were executed successfully to generate
+and manage numeric identifiers.

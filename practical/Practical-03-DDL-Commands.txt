@@ -1,0 +1,65 @@
+PRACTICAL 3: CREATE AND EXECUTE QUERIES USING DDL COMMANDS
+Subject : Relational Database Management System (CM41201)
+College : Government Polytechnic, Pune
+
+--------------------------------------------------------------------
+AIM
+--------------------------------------------------------------------
+To create and modify database objects using Data Definition
+Language (DDL) commands.
+
+--------------------------------------------------------------------
+THEORY
+--------------------------------------------------------------------
+DDL commands define and modify the structure of database objects.
+
+  CREATE   : Creates a new object such as a table, view or index.
+  ALTER    : Changes the structure of an existing object, e.g. adds,
+             modifies or drops a column.
+  TRUNCATE : Removes all rows from a table but keeps the table
+             structure. It is a DDL command and cannot be rolled
+             back like DELETE.
+  DROP     : Removes the object itself along with its structure.
+
+DDL commands are auto-committed, that is, the change is saved
+permanently as soon as the command is executed.
+
+--------------------------------------------------------------------
+SQL CODE
+--------------------------------------------------------------------
+CREATE TABLE Employee (
+    EmpID NUMBER PRIMARY KEY,
+    EmpName VARCHAR2(30),
+    Salary NUMBER(10,2)
+);
+
+ALTER TABLE Employee
+ADD Department VARCHAR2(20);
+
+DESC Employee;
+
+TRUNCATE TABLE Employee;
+
+DROP TABLE Employee;
+
+--------------------------------------------------------------------
+PROCEDURE
+--------------------------------------------------------------------
+1. Create the Employee table using CREATE.
+2. Add a new column using ALTER.
+3. Display the table structure using DESC.
+4. Execute TRUNCATE to remove all records.
+5. Execute DROP to remove the table.
+
+--------------------------------------------------------------------
+OBSERVATION
+--------------------------------------------------------------------
+The table was created, modified, emptied and finally removed using
+the appropriate DDL commands. The DESC command displayed the column
+names, their data types and whether NULL values are allowed.
+
+--------------------------------------------------------------------
+CONCLUSION
+--------------------------------------------------------------------
+DDL commands were executed successfully to manage database
+structures.
