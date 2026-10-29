@@ -24,10 +24,20 @@ npx --yes github:ashaz-ansari/dbms all
 # print the index, with the tables shared between practicals
 npx --yes github:ashaz-ansari/dbms --index
 
+# copy to the clipboard instead of printing anything
+npx --yes github:ashaz-ansari/dbms 3 --copy
+npx --yes github:ashaz-ansari/dbms copy 3        # same thing
+npx --yes github:ashaz-ansari/dbms copy all
+npx --yes github:ashaz-ansari/dbms 3 5 --copy    # both, in one go
+
 # save as .txt files instead of printing
 npx --yes github:ashaz-ansari/dbms 3 --save
 npx --yes github:ashaz-ansari/dbms all --save --dir ./out
 ```
+
+In copy mode nothing is written to the screen and stdout stays empty, so it
+is safe inside a script. Add `--verbose` to get a one-line confirmation on
+stderr reporting what was copied and how many bytes.
 
 `node cli.js <same arguments>` works if you have cloned the repo.
 
