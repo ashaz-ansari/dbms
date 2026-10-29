@@ -1,0 +1,34 @@
+{
+  "name": "rdbms-practicals",
+  "version": "1.0.0",
+  "description": "RDBMS practicals 1-24 (CM41201) as plain-text write-ups, readable straight from the terminal.",
+  "bin": {
+    "rdbms-practicals": "cli.js"
+  },
+  "files": [
+    "cli.js",
+    "practical"
+  ],
+  "scripts": {
+    "start": "node cli.js"
+  },
+  "engines": {
+    "node": ">=14"
+  },
+  "keywords": [
+    "rdbms",
+    "dbms",
+    "sql",
+    "plsql",
+    "oracle",
+    "mongodb",
+    "practicals",
+    "diploma"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ashaz-ansari/dbms.git"
+  },
+  "author": "ashaz-ansari",
+  "license": "MIT"
+}
